@@ -9,26 +9,16 @@
  */
 
 import React from 'react';
-import {FlatList} from 'react-native';
+import {QueryClient, QueryClientProvider} from 'react-query';
+import {Home} from './src/screens/home';
 
-import {StarRating} from './src/components/StarRating';
+const queryClient = new QueryClient();
 
 function App() {
-  const movies = [
-    {id: '1', name: 'Uma Noite Sem Fim', star: 4},
-    {id: '2', name: 'Uma Noite Sem Fim', star: 5.9},
-    {id: '3', name: 'Uma Noite Sem Fim', star: 3.9},
-    {id: '4', name: 'Uma Noite Sem Fim', star: 6.9},
-    {id: '5', name: 'Uma Noite Sem Fim', star: 7.9},
-    {id: '6', name: 'Uma Noite Sem Fim', star: 1.9},
-    {id: '7', name: 'Uma Noite Sem Fim', star: 3.9},
-  ];
   return (
-    <FlatList
-      data={movies}
-      keyExtractor={item => item.id}
-      renderItem={({item}) => <StarRating name={item.name} star={item.star} />}
-    />
+    <QueryClientProvider client={queryClient}>
+      <Home />
+    </QueryClientProvider>
   );
 }
 
